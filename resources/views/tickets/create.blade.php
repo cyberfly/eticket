@@ -6,7 +6,7 @@
 
             <h1>Create your ticket</h1>
 
-            <form action="#" method="POST">
+            <form action="{{ route('tickets.store') }}" method="POST">
                 @csrf
 
                 <div class="form-group mb-4">

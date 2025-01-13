@@ -11,4 +11,8 @@ class TicketController extends Controller
         // echo "borang ticket";
         return view("tickets.create");
     }
+
+    public function store(Request $request) {
+        echo "submit ticket";
+    }
 }
