@@ -8,6 +8,7 @@ class TicketController extends Controller
 {
     //
     public function create(Request $request) {
-        echo "borang ticket";
+        // echo "borang ticket";
+        return view("tickets.create");
     }
 }
