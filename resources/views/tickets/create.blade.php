@@ -13,7 +13,7 @@
 
                 <div class="form-group mb-4">
                     <label for="title">Subject</label>
-                    <input type="text" name="subject" class="form-control" id="subject" placeholder="Enter your subject">
+                    <input type="text" name="subject" class="form-control" id="subject" placeholder="Enter your subject" value="{{ old('subject') }}">
                 </div>
 
                 <div class="form-group mb-4">
@@ -26,8 +26,7 @@
 
                 <div class="form-group mb-4">
                     <label for="title">Description</label>
-
-                    <textarea name="description" id="description" class="form-control"></textarea>
+                    <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
                 </div>
 
                 <div class="form-group mb-4">
