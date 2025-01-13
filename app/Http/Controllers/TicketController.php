@@ -8,6 +8,16 @@ use App\Models\Ticket;
 
 class TicketController extends Controller
 {
+    public function index(Request $request) {
+        // echo "senarai ticket";
+        $user_id = auth()->id();
+        $tickets = Ticket::where('user_id', $user_id)->get();
+
+        // return $tickets;
+
+        return view("tickets.index", compact('tickets'));
+    }
+    
     //
     public function create(Request $request) {
         // echo "borang ticket";
