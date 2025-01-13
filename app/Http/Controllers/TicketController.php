@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class TicketController extends Controller
 {
     //
     public function create(Request $request) {
         // echo "borang ticket";
-        return view("tickets.create");
+
+        $categories = Category::all();
+
+        // return $categories;
+
+        return view("tickets.create", compact('categories'));
     }
 
     public function store(Request $request) {
