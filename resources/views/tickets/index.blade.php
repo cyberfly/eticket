@@ -6,6 +6,8 @@
 
             <h1>My Tickets List</h1>
 
+            @include('partials.alert')
+
             @if ($tickets->count() > 0)
                 <div class="table-responsive">
                     <table class="table table-striped">

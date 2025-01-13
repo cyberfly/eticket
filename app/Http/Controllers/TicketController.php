@@ -52,6 +52,9 @@ class TicketController extends Controller
 
         $ticket->save();
 
-        echo "success submit ticket";
+        // echo "success submit ticket";
+        return redirect()
+            ->route('tickets.index')
+            ->with('success', 'Ticket submitted successfully.');
     }
 }
