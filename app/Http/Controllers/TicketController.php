@@ -13,6 +13,15 @@ class TicketController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request->validate(
+            [
+                'subject' => 'required',
+                'category_id' => 'required',
+                'description' => 'required',
+            ]
+        );
+
         echo "submit ticket";
     }
 }

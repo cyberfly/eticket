@@ -6,6 +6,8 @@
 
             <h1>Create your ticket</h1>
 
+            @include('partials.alert')
+
             <form action="{{ route('tickets.store') }}" method="POST">
                 @csrf
 
