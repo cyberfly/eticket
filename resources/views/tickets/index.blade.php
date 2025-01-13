@@ -8,6 +8,10 @@
 
             @include('partials.alert')
 
+            <div class="my-4">
+                <a href="{{ route('tickets.create') }}" class="btn btn-info">Create Ticket</a>
+            </div>
+
             @if ($tickets->count() > 0)
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -40,7 +44,11 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
+
+                    <div class="my-4">
+                        {{ $tickets->links('pagination::bootstrap-5') }}
+                    </div>
+
                 </div>
             @else
                 <div class="alert alert-info">
