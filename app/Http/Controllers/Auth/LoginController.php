@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/tickets';
+    // protected $redirectTo = '/tickets';
 
     /**
      * Create a new controller instance.
@@ -36,5 +36,17 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+    public function redirectTo() {
+        if (auth()->user()->hasRole('admin')) {
+            return route('admin.tickets.index');
+        }
+
+        if (auth()->user()->hasRole('user')) {
+            return route('tickets.index');
+        }
+
+        return '/home';
     }
 }
