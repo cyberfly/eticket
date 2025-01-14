@@ -60,7 +60,7 @@ class TicketController extends Controller
         $ticket->save();
 
         // hantar email
-        Mail::to('admin@eticket.test')->send(new TicketCreated($ticket));
+        Mail::to('admin@eticket.test')->queue(new TicketCreated($ticket));
 
         // echo "success submit ticket";
         return redirect()
