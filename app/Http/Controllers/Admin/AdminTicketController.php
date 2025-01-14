@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\Category;
+use App\Models\User;
 
 class AdminTicketController extends Controller
 {
@@ -25,6 +26,17 @@ class AdminTicketController extends Controller
             $tickets->where('category_id', $request->category_id);
         }
 
+        if ($request->filled('user_id')) {
+            $tickets->where('user_id', $request->user_id);
+        }
+
+        if ($request->filled('keyword')) {
+            $tickets->where(function($query) use ($request) {
+                $query->where('subject', 'like', '%'.$request->keyword.'%')
+                      ->orWhere('description', 'like', '%'.$request->keyword.'%');
+            });
+        }
+
         $tickets = $tickets->orderBy('id', 'desc')
                     ->paginate(2);
 
@@ -32,7 +44,11 @@ class AdminTicketController extends Controller
 
         $categories = Category::all();
 
-        return view("tickets.index", compact('tickets', 'categories'));
+        // define users, dan pass pada compact
+        $users = User::all();
+        // dekat views, buat sama macam categories
+
+        return view("tickets.index", compact('tickets', 'categories', 'users'));
     }
 
     /**

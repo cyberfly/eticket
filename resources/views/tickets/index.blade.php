@@ -32,6 +32,24 @@
                         </select>
                     </div>
 
+                    <div class="form-group mb-4">
+                        <label for="title">User</label>
+    
+                        <select name="user_id" class="form-control" id="user_id">
+                            <option value="">Select User</option>
+    
+                            @foreach ($users as $user)
+                            <option value="{{ $user->id }}" {{ request('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="title">Keyword</label>
+    
+                        <input type="text" name="keyword" id="" value="{{ request('keyword') }}" class="form-control">
+                    </div>
+
                     <button class="btn btn-info" type="submit">Search</button>
 
                 </form>
