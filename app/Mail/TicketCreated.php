@@ -16,9 +16,9 @@ class TicketCreated extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public $ticket)
     {
-        //
+        
     }
 
     /**
@@ -26,8 +26,10 @@ class TicketCreated extends Mailable
      */
     public function envelope(): Envelope
     {
+        $subject = 'Ticket Created: ' . $this->ticket->subject;
+        
         return new Envelope(
-            subject: 'Ticket Created',
+            subject: $subject,
         );
     }
 
