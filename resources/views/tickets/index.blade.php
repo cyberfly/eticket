@@ -17,6 +17,7 @@
             @endhasrole
 
             {{-- filter --}}
+            @hasrole('admin')
             <div>
                 <form action="{{ route('admin.tickets.index') }}" method="GET">
 
@@ -54,6 +55,7 @@
 
                 </form>
             </div>
+            @endhasrole
             {{-- end filter --}}
 
             @if ($tickets->count() > 0)
