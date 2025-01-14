@@ -11,9 +11,13 @@ class TicketController extends Controller
     public function index(Request $request) {
         // echo "senarai ticket";
         $user_id = auth()->id();
-        $tickets = Ticket::where('user_id', $user_id)->paginate(2);
+        $tickets = Ticket::where('user_id', $user_id)
+                    ->with('category')
+                    ->paginate(2);
 
-        // return $tickets;
+        // dd($tickets);
+
+        return $tickets;
 
         return view("tickets.index", compact('tickets'));
     }
