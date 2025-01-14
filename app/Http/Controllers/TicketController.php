@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TicketCreated;
 
 class TicketController extends Controller
 {
@@ -56,6 +58,9 @@ class TicketController extends Controller
         $ticket->user_id = auth()->id();
 
         $ticket->save();
+
+        // hantar email
+        Mail::to('admin@eticket.test')->send(new TicketCreated($ticket));
 
         // echo "success submit ticket";
         return redirect()
