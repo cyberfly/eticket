@@ -23,6 +23,7 @@
                                 <th>Category</th>
                                 <th>Description</th>
                                 <th>Created</th>
+                                <th>Submitted By</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,9 +35,10 @@
                                     <td><span
                                             class="badge bg-{{ $ticket->status == 'open' ? 'success' : 'secondary' }}">{{ ucfirst($ticket->status) }}</span>
                                     </td>
-                                    <td>{{ $ticket->category_id }}</td>
+                                    <td>{{ $ticket->category->name }}</td>
                                     <td>{{ $ticket->description }}</td>
                                     <td>{{ $ticket->created_at->format('M d, Y') }}</td>
+                                    <td>{{ $ticket->user->name }}</td>
                                     <td>
 
                                     </td>

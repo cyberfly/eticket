@@ -13,11 +13,12 @@ class TicketController extends Controller
         $user_id = auth()->id();
         $tickets = Ticket::where('user_id', $user_id)
                     ->with('category')
+                    ->with('user')
                     ->paginate(2);
 
         // dd($tickets);
 
-        return $tickets;
+        // return $tickets;
 
         return view("tickets.index", compact('tickets'));
     }
