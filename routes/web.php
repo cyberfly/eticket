@@ -23,6 +23,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
     Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
     Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+
+    // route untuk admin user
+    Route::group(['middleware' => ['role:admin']], function () {
+        
+        Route::get('/testadmin', function() {
+            echo "Test admin route is working!";
+        });
+    });
+
 });
 
 
