@@ -8,9 +8,35 @@
 
             @include('partials.alert')
 
+            @hasrole('user')
+
             <div class="my-4">
                 <a href="{{ route('tickets.create') }}" class="btn btn-info">Create Ticket</a>
             </div>
+
+            @endhasrole
+
+            {{-- filter --}}
+            <div>
+                <form action="{{ route('admin.tickets.index') }}" method="GET">
+
+                    <div class="form-group mb-4">
+                        <label for="title">Category</label>
+    
+                        <select name="category_id" class="form-control" id="category_id">
+                            <option value="">Select Category</option>
+    
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <button class="btn btn-info" type="submit">Search</button>
+
+                </form>
+            </div>
+            {{-- end filter --}}
 
             @if ($tickets->count() > 0)
                 <div class="table-responsive">
@@ -48,7 +74,7 @@
                     </table>
 
                     <div class="my-4">
-                        {{ $tickets->links('pagination::bootstrap-5') }}
+                        {{ $tickets->appends(request()->query())->links('pagination::bootstrap-5') }}
                     </div>
 
                 </div>

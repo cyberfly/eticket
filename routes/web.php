@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Admin\AdminTicketController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,11 +26,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
 
     // route untuk admin user
-    Route::group(['middleware' => ['role:admin']], function () {
+    Route::group(['middleware' => ['role:admin'], 'prefix' => 'admin'], function () {
         
         Route::get('/testadmin', function() {
             echo "Test admin route is working!";
         });
+
+        Route::get('/tickets', [AdminTicketController::class, 'index'])->name('admin.tickets.index');
     });
 
 });
