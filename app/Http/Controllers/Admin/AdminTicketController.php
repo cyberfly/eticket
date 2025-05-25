@@ -98,4 +98,11 @@ class AdminTicketController extends Controller
     {
         //
     }
+
+    public function close(Ticket $ticket)
+    {
+        $ticket->update(['status' => 'closed']);
+        
+        return redirect()->back()->with('success', 'Ticket has been closed successfully');
+    }
 }

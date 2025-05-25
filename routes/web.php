@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::get('/tickets', [AdminTicketController::class, 'index'])->name('admin.tickets.index');
+        Route::put('/tickets/{ticket}/close', [AdminTicketController::class, 'close'])->name('admin.tickets.close');
     });
 
 });

@@ -70,7 +70,9 @@
                                 <th>Description</th>
                                 <th>Created</th>
                                 <th>Submitted By</th>
+                                @hasrole('admin')
                                 <th>Actions</th>
+                                @endhasrole
                             </tr>
                         </thead>
                         <tbody>
@@ -85,9 +87,19 @@
                                     <td>{{ $ticket->description }}</td>
                                     <td>{{ $ticket->created_at->format('M d, Y') }}</td>
                                     <td>{{ $ticket->user->name }}</td>
+                                    @hasrole('admin')
                                     <td>
-
+                                        @if($ticket->status == 'open')
+                                        <form action="{{ route('admin.tickets.close', $ticket->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure you want to close this ticket?')">
+                                                Close Ticket
+                                            </button>
+                                        </form>
+                                    @endif
                                     </td>
+                                    @endhasrole
                                 </tr>
                             @endforeach
                         </tbody>
